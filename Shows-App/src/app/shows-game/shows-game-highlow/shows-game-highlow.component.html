@@ -1,0 +1,48 @@
+<div class="scores">
+  <h3>Max score : {{maxScore}}</h3>
+
+  <!-- </div>
+<div> -->
+
+
+  <h3>Score : {{score}}</h3>
+
+
+  <button> Play Again</button>
+
+</div>
+
+
+<div class="container">
+
+  <div class="box1">
+
+    <h2> {{firstTitle}}</h2>
+    <img [src]="firstImg" alt="">
+    <div class="miniContainer">
+      <h3> Your Rating Is : {{rating}}</h3>
+    </div>
+  </div>
+
+  <div class="box2">
+    <h2 style="color: brown;"> Vs </h2>
+  </div>
+  <!-- btnSpace -->
+  <div class="box3">
+    <h2> {{secondTitle}}</h2>
+
+    <img [src]="secondImg" alt="">
+    <div class="miniContainer">
+
+      <h3> Your Rating Is : {{rating2}}</h3>
+
+      <!-- <button class="btnSpace" (click)="onClickChoseAction()"> Higher</button> -->
+      <button class="btnSpace" (click)="onClickShowsAction(GameAnswer.higher)"> Higher</button>
+      <button class="btnSpace" (click)="onClickShowsAction(GameAnswer.lower)"> Lower</button>
+
+    </div>
+  </div>
+
+  <button (click)="onChangeTheMedia()"></button>
+
+</div>
