@@ -12,7 +12,7 @@ enum GameAnswer {
 @Component({
   selector: 'app-shows-game-highlow',
   templateUrl: './shows-game-highlow.component.html',
-  styleUrls: ['./shows-game-highlow.component.css']
+  styleUrls: ['./shows-game-highlow.component.scss']
 })
 export class ShowsGameHighlowComponent implements OnInit, OnDestroy {
 
@@ -63,6 +63,8 @@ export class ShowsGameHighlowComponent implements OnInit, OnDestroy {
   maxScore = 0;
   score = 0;
 
+  gameOver = false;
+
   media = "movies";
 
   rating: number = this.shows[0].rating;
@@ -92,9 +94,9 @@ export class ShowsGameHighlowComponent implements OnInit, OnDestroy {
         this.testingWithoutSameNextRatings();
 
 
-        this.index = 0;
         this.getShowsToGame(); // only log to console
-        this.nextShowsGame();
+
+        this.newGame();
 
 
 
@@ -131,6 +133,17 @@ export class ShowsGameHighlowComponent implements OnInit, OnDestroy {
 
   }
 
+  newGame() {
+    this.index = 0;
+    this.nextShowsGame();
+    this.score = 0;
+    this.gameOver = false;
+    this.shuffleShows();
+  }
+
+  shuffleShows() {
+    console.log("Not implement ...");
+  }
 
   ngOnDestroy(): void {
     this.showsSub.unsubscribe();
@@ -162,7 +175,12 @@ export class ShowsGameHighlowComponent implements OnInit, OnDestroy {
   }
 
   onClickShowsAction(gameAnswer: GameAnswer) {
-    // console.log(this.shows);
+
+    if (this.gameOver) {
+      return;
+    }
+
+
 
     const lenAry = this.shows.length;
     const currentIndex = (this.index - 1 + lenAry) % lenAry;
@@ -170,50 +188,27 @@ export class ShowsGameHighlowComponent implements OnInit, OnDestroy {
     const nextIndex = (currentIndex + 1) % lenAry;
     const rightShow = this.shows[nextIndex];
 
-    // console.log(leftShow);
-    // console.log(rightShow);
-
-    // console.log(currentIndex);
-    // console.log(nextIndex);
-
     if (leftShow.rating > rightShow.rating) {
-      console.log("First Half");
-      if (gameAnswer === GameAnswer.lower) {
-        console.log("Currect");
+      if (gameAnswer === GameAnswer.lower) { // currect answer
         this.score++;
         this.nextShowsGame();
-      } else {
-        console.log("Wrong!");
-        this.nextShowsGame();
+      } else {// wrong answer
+        this.gameOver = true;
       }
     }
     else {
-      console.log("Second Half - else");
-      if (gameAnswer === GameAnswer.lower) {
-        console.log("Wrong!");
-        this.nextShowsGame();
-      } else {
-        console.log("Currect");
+      if (gameAnswer === GameAnswer.lower) { // wrong answer
+        this.gameOver = true;
+      } else {// currect answer
         this.score++;
         this.nextShowsGame();
       }
+
     }
-    // else {
-    //   if (gameAnswer === GameAnswer.higher) {
-    //     console.log("Wrong!");
-    //     this.nextShowsGame();
-    //   } else {
-    //     console.log("Currect");
-    //     this.score++;
-    //     this.nextShowsGame();
-    // }
 
-
-
-
-
-
-
+    if (this.score >= this.maxScore) {
+      this.maxScore = this.score;
+    }
   }
 
   getRandomInt(max) {

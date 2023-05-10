@@ -10,12 +10,7 @@ const BACKEND_URL = environment.apiUrl + "/datastatic/";
 interface ShowGet {
   dataObj:
   {
-    items: any[]
-    // items: [
-    //   { title: string },
-    //   { image: string },
-    //   { imDbRating: number },
-    // ]
+    items: { title: string, imDbRating: number, image: string }[]
   }
 }
 
@@ -40,7 +35,7 @@ export class ShowsGameService {
   getShows(media: string) {
     // const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
 
-    const numberOfTakeShows = 60;
+    const numberOfTakeShows = 70;
     this.http
       // .get<{ dataObj: any }>(
       .get<ShowGet>(

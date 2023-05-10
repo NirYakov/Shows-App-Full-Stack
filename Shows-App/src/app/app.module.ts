@@ -13,6 +13,8 @@ import { CardShowComponent } from './cards/cardShow/cardShow.component';
 import { CardsListComponent } from './cards/cards-list/cards-list.component';
 import { ShowsGameHighlowComponent } from './shows-game/shows-game-highlow/shows-game-highlow.component';
 import { SingleShowComponent } from './cards/single-show/single-show.component';
+import { CarouselComponent } from './carousel/carousel.component';
+
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { SingleShowComponent } from './cards/single-show/single-show.component';
     CardsListComponent,
     ShowsGameHighlowComponent,
     SingleShowComponent,
+    CarouselComponent,
 
   ],
   imports: [

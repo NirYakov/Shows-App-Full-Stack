@@ -130,5 +130,42 @@ app.get("/api/datastatic/tv", async (req, res, next) => {
 });
 
 
+let numberOfTrys = 0;
+
+app.get("/api/poll", async (req, res, next) => {
+
+
+    let rateCAN = 1.0;
+    let rateEuro = 1.0;
+
+    numberOfTrys++;
+
+    if (numberOfTrys % 3 == 0) {
+
+        // req from rate api
+        await axios({
+            method: 'get',
+            url: `https://open.er-api.com/v6/latest/USD`,
+        })
+            .then(function (response) {
+                rateCAN = response.data.rates.CAD;
+                rateEuro = response.data.rates.EUR;
+
+            }).catch(e => {
+                console.log({
+                    message: "oops :(",
+                    error: e,
+                })
+            });
+
+    }
+
+
+    res.status(200).json({
+        rateCAN,
+        rateEuro
+    });
+});
+
 
 module.exports = app;
