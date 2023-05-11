@@ -14,6 +14,9 @@ import { CardsListComponent } from './cards/cards-list/cards-list.component';
 import { ShowsGameHighlowComponent } from './shows-game/shows-game-highlow/shows-game-highlow.component';
 import { SingleShowComponent } from './cards/single-show/single-show.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { LoginComponent } from './auth/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SignupComponent } from './auth/signup/signup.component';
 
 
 
@@ -26,7 +29,8 @@ import { CarouselComponent } from './carousel/carousel.component';
     ShowsGameHighlowComponent,
     SingleShowComponent,
     CarouselComponent,
-
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,7 @@ import { CarouselComponent } from './carousel/carousel.component';
     MatSlideToggleModule,
     MatToolbarModule,
     HttpClientModule,
+    ReactiveFormsModule,
 
   ],
   providers: [],

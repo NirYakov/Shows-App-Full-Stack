@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject, map, take } from 'rxjs';
 import { Show } from './shows-game-highlow/show.model';
 
-const BACKEND_URL = environment.apiUrl + "/datastatic/";
+const BACKEND_URL = environment.apiUrl + "/showsgame/";
 
 interface ShowGet {
   dataObj:

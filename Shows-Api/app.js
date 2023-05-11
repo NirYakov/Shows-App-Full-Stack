@@ -44,5 +44,8 @@ app.use("/api/showsgame", showsGameRoutes);
 
 app.use("/api/test", testingRoutes);
 
+app.use("/api/user", userRoutes);
+
+
 
 module.exports = app;
